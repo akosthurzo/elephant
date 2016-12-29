@@ -1,0 +1,6 @@
+{
+  "name": "Elephant",
+  "description": "Elephant is a web application that helps you memorize everything.",
+  "image": "heroku/java",
+  "addons": [ "heroku-postgresql" ]
+}
