@@ -18,6 +18,88 @@
          <artifactId>slf4j-log4j12</artifactId>
          <version>1.7.5</version>
       </dependency>
+      <dependency>
+         <groupId>com.sparkjava</groupId>
+         <artifactId>spark-core</artifactId>
+         <version>2.5.4</version>
+      </dependency>
+      <dependency>
+         <groupId>com.sparkjava</groupId>
+         <artifactId>spark-template-freemarker</artifactId>
+         <version>2.0.0</version>
+      </dependency>
+      <dependency>
+         <groupId>commons-dbcp</groupId>
+         <artifactId>commons-dbcp</artifactId>
+         <version>1.4</version>
+      </dependency>
+      <dependency>
+         <groupId>org.hibernate</groupId>
+         <artifactId>hibernate-core</artifactId>
+         <version>4.3.6.Final</version>
+      </dependency>
+      <dependency>
+         <groupId>org.hibernate</groupId>
+         <artifactId>hibernate-entitymanager</artifactId>
+         <version>4.3.6.Final</version>
+         <!--<exclusions>
+            <exclusion>
+               <groupId>cglib</groupId>
+               <artifactId>cglib</artifactId>
+            </exclusion>
+            <exclusion>
+               <groupId>dom4j</groupId>
+               <artifactId>dom4j</artifactId>
+            </exclusion>
+         </exclusions>-->
+      </dependency>
+      <dependency>
+         <groupId>org.hibernate.javax.persistence</groupId>
+         <artifactId>hibernate-jpa-2.1-api</artifactId>
+         <version>1.0.0.Final</version>
+      </dependency>
+      <dependency>
+         <groupId>org.postgresql</groupId>
+         <artifactId>postgresql</artifactId>
+         <version>9.4-1201-jdbc4</version>
+      </dependency>
+      <dependency>
+         <groupId>org.springframework</groupId>
+         <artifactId>spring-aspects</artifactId>
+         <version>4.3.3.RELEASE</version> <!-- setup repositories -->
+      </dependency>
+      <dependency>
+         <groupId>org.springframework</groupId>
+         <artifactId>spring-orm</artifactId>
+         <version>4.3.4.RELEASE</version>
+      </dependency>
+      <dependency>
+         <groupId>org.springframework</groupId>
+         <artifactId>spring-tx</artifactId>
+         <version>4.3.4.RELEASE</version>
+      </dependency>
+      <dependency>
+         <groupId>org.springframework</groupId>
+         <artifactId>spring-web</artifactId>
+         <version>4.3.4.RELEASE</version>
+      </dependency>
+      <dependency>
+         <groupId>org.springframework.data</groupId>
+         <artifactId>spring-data-jpa</artifactId>
+         <version>1.10.6.RELEASE</version>
+      </dependency>
+      <dependency>
+         <groupId>com.heroku.sdk</groupId>
+         <artifactId>heroku-jdbc</artifactId>
+         <version>0.1.1</version>
+      </dependency>
+      <!-- spark core includes this
+      <dependency>
+         <groupId>javax.servlet</groupId>
+         <artifactId>javax.servlet-api</artifactId>
+         <version>3.1.0</version>
+      </dependency>
+      -->
    </dependencies>
    <build>
       <plugins>
