@@ -61,5 +61,4 @@
       <constructor-arg value="${DATABASE_URL}"/>
    </bean>
 
-   <bean class="com.elephantapp.Upload" id="upload" />
 </beans>
