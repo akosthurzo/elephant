@@ -1,5 +1,5 @@
 (function() {
-    var app = angular.module("elephantModule", []);
+    var app = angular.module("elephantApp");
 
     var courseController = function($scope, $http) {
         $scope.course = {};

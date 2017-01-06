@@ -1,5 +1,5 @@
 (function() {
-    var app = angular.module("elephantModule", []);
+    var app = angular.module("elephantApp", []);
 
     app.directive('fileChange',['$parse', function($parse) {
         return{
