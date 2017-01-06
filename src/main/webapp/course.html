@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html ng-app="elephantModule">
+<head>
+    <title>Course</title>
+    <link rel="stylesheet"
+          href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"
+          integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u"
+          crossorigin="anonymous">
+
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.1/angular.min.js"></script>
+    <script src="/js/course.js" ></script>
+</head>
+<body ng-controller="courseController">
+    <form class="form-horizontal" role="form" ng-submit="createCourse()">
+        <div>
+            <label for="course_name">Course Name</label>
+
+            <div>
+                <input type="text" id="course_name" placeholder="Course name" ng-model="course.name">
+            </div>
+        </div>
+        <div>
+            <div >
+                <button type="submit">New Course</button>
+            </div>
+        </div>
+    </form>
+
+    <table>
+        <tr>
+            <th>Course name</th>
+            <th>Number of modules</th>
+            <th>Number of cards</th>
+            <th>Actions</th>
+        </tr>
+        <tr ng-repeat="course in courses">
+            <td>{{ course.name }}</td>
+            <td>..</td>
+            <td>..</td>
+            <td><button ng-click="deleteCourse(course.id)">Delete</button></td>
+        </tr>
+    </table>
+</body>
+</html>
