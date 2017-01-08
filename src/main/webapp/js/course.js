@@ -5,14 +5,10 @@
       $scope.course = {};
 
       $scope.refreshCourses = function () {
-         $http.get('/api/courses')
-            .then(function successCallback(response) {
-                  console.log("getAllCourses SUCCESS! " + response);
-                  $scope.courses = response.data._embedded.courses;
-               },
-               function errorCallback(response) {
-                  console.log("getAllCourses ERROR! " + response);
-               });
+         courseService.getAllCourses()
+            .then(function(data) {
+               $scope.courses = data;
+            });
       };
 
       $scope.addCourse = function () {
