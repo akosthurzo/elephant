@@ -10,6 +10,13 @@
          .when("/courses", {
             templateUrl: "course.html",
             controller: "courseController"
+         })
+         .when("/course/:id", {
+            templateUrl: "course_details.html",
+            controller: "courseDetailsController"
+         })
+         .otherwise({
+            templateUrl: "404.html"
          });
    });
 })();

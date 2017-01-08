@@ -7,7 +7,7 @@
         </div>
     </div>
     <div>
-        <div >
+        <div>
             <button type="submit">New Course</button>
         </div>
     </div>
@@ -21,7 +21,7 @@
         <th>Actions</th>
     </tr>
     <tr ng-repeat="course in courses">
-        <td>{{ course.name }}</td>
+        <td><button class="btn btn-link" ng-click="goToDetails(course)">{{ course.name }}</button></td>
         <td>..</td>
         <td>..</td>
         <td><button ng-click="deleteCourse(course.id)">Delete</button></td>

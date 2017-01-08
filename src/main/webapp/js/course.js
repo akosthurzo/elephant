@@ -1,7 +1,7 @@
 (function () {
    var app = angular.module("elephantApp");
 
-   var courseController = function ($scope, $http, courseService) {
+   var courseController = function ($scope, $http, $location, courseService) {
       $scope.course = {};
 
       $scope.refreshCourses = function () {
@@ -27,8 +27,12 @@
             });
       };
 
+      $scope.goToDetails = function(course) {
+         $location.path("/course/" + course.id);
+      };
+
       $scope.refreshCourses();
    };
 
-   app.controller("courseController", ['$scope', '$http', 'courseService', courseController]);
+   app.controller("courseController", ['$scope', '$http', '$location', 'courseService', courseController]);
 })();
