@@ -3,9 +3,13 @@
 
    app.config(function ($routeProvider) {
       $routeProvider
-         .when("/main", {
-            templateUrl: "index.html"
+         .when("/", {
+            templateUrl: "course.html",
+            controller: "courseController"
          })
-         .otherwise({redirectTo: "/main"});
+         .when("/courses", {
+            templateUrl: "course.html",
+            controller: "courseController"
+         });
    });
 })();
