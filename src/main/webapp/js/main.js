@@ -12,6 +12,16 @@
                      console.log("addCourse ERROR! " + response);
                   });
          },
+
+         deleteCourse: function (id) {
+            return $http.delete('/api/courses/' + id)
+               .then(function successCallback(response) {
+                     console.log("deleteCourse SUCCESS! " + response);
+                  },
+                  function errorCallback(response) {
+                     console.log("deleteCourse ERROR! " + response);
+                  });
+         },
       };
    }]);
 })();
