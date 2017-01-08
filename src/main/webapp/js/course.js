@@ -1,8 +1,8 @@
-(function() {
-    var app = angular.module("elephantApp");
+(function () {
+   var app = angular.module("elephantApp");
 
-    var courseController = function($scope, $http) {
-        $scope.course = {};
+   var courseController = function ($scope, $http, courseService) {
+      $scope.course = {};
 
         $scope.refreshCourses = function() {
             $http.get('/api/courses')
@@ -42,5 +42,5 @@
         $scope.refreshCourses();
     };
 
-    app.controller("courseController", ['$scope', '$http', courseController]);
+   app.controller("courseController", ['$scope', '$http', 'courseService', courseController]);
 })();
