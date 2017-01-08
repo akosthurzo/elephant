@@ -22,6 +22,22 @@
                      console.log("deleteCourse ERROR! " + response);
                   });
          },
+
+         getAllCourses: function () {
+            var def = $q.defer();
+
+            $http.get('/api/courses')
+               .then(function successCallback(response) {
+                     console.log("getAllCourses SUCCESS! " + response);
+                     def.resolve(response.data._embedded.courses);
+                  },
+                  function errorCallback(response) {
+                     console.log("getAllCourses ERROR! " + response);
+                     def.reject("getAllCourses ERROR! " + response);
+                  });
+
+            return def.promise;
+         }
       };
    }]);
 })();
