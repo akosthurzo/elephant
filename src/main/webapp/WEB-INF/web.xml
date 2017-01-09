@@ -26,9 +26,33 @@
       <load-on-startup>1</load-on-startup>
    </servlet>
 
+   <servlet>
+      <servlet-name>default</servlet-name>
+      <servlet-class>org.eclipse.jetty.servlet.DefaultServlet</servlet-class>
+      <init-param>
+         <param-name>acceptRanges</param-name>
+         <param-value>true</param-value>
+      </init-param>
+      <init-param>
+         <param-name>maxCacheSize</param-name>
+         <param-value>0</param-value>
+      </init-param>
+      <init-param>
+         <param-name>cacheControl</param-name>
+         <param-value>max-age=0,public</param-value>
+      </init-param>
+      <load-on-startup>1</load-on-startup>
+   </servlet>
+
    <servlet-mapping>
       <servlet-name>rest</servlet-name>
       <url-pattern>/api/*</url-pattern>
+   </servlet-mapping>
+
+   <servlet-mapping>
+      <servlet-name>default</servlet-name>
+      <url-pattern>/</url-pattern>
+      <url-pattern>/js/</url-pattern>
    </servlet-mapping>
 
 </web-app>
