@@ -23,6 +23,22 @@
                   });
          },
 
+         getCourse: function (id) {
+            var def = $q.defer();
+
+            $http.get('/api/courses/' + id)
+               .then(function successCallback(response) {
+                     console.log("getCourse SUCCESS! " + response);
+                     def.resolve(response.data);
+                  },
+                  function errorCallback(response) {
+                     console.log("getCourse ERROR! " + response);
+                     def.reject("getCourse ERROR! " + response);
+                  });
+
+            return def.promise;
+         },
+
          getAllCourses: function () {
             var def = $q.defer();
 
