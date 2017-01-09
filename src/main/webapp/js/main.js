@@ -15,6 +15,10 @@
             templateUrl: "course_details.html",
             controller: "courseDetailsController"
          })
+         .when("/upload", {
+            templateUrl: "upload.html",
+            controller: "uploadController"
+         })
          .otherwise({
             templateUrl: "404.html"
          });

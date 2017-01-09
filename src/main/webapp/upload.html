@@ -1,19 +1,19 @@
-<!DOCTYPE html>
-<html ng-app="elephantApp">
-<head>
-    <title>Upload</title>
-    <link rel="stylesheet"
-          href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"
-          integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u"
-          crossorigin="anonymous">
+<div>
+   <input type="file" file-change="handler($event,files)" ng-model="module_file"/>
+</div>
 
-    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.1/angular.min.js"></script>
-    <script src="/js/main.js" ></script>
-    <script src="/js/upload.js" ></script>
-</head>
-<body>
-    <div ng-controller="uploadController">
-        <input type="file" file-change="handler($event,files)" ng-model="MyFiles" />
-    </div>
-</body>
-</html>
+<h4>{{ module.name }}</h4>
+
+<table>
+   <tr>
+      <th>Side 1</th>
+      <th>Side 2</th>
+   </tr>
+   <tr ng-repeat="card in module.cards">
+      <td>{{ card.side1 }}</td>
+      <td>{{ card.side2 }}</td>
+   </tr>
+</table>
+
+<button class="btn" ng-click="uploadCards()">Upload Cards</button>
+<button class="btn" ng-click="uploadModules()">Upload Modules</button>
