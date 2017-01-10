@@ -6,7 +6,7 @@
          id: $routeParams.id
       };
 
-      courseService.getCourse($scope.course.id)
+      courseService.getCourseWithModules($scope.course.id)
          .then(function(course) {
             $scope.course = course;
          });

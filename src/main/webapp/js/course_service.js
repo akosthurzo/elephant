@@ -39,6 +39,28 @@
             return def.promise;
          },
 
+         getCourseWithModules : function (id) {
+            var def = $q.defer();
+
+            this.getCourse(id)
+               .then(function(course) {
+                  $http.get(course._links.modules.href)
+                     .then(function successCallback(response) {
+                           console.log("getCourseWithModules SUCCESS! " + response);
+
+                           course.modules = response.data._embedded.modules;
+
+                           def.resolve(course);
+                        },
+                        function errorCallback(response) {
+                           console.log("getCourseWithModules ERROR! " + response);
+                           def.reject("getCourseWithModules ERROR! " + response);
+                        });
+               });
+
+            return def.promise;
+         },
+
          getAllCourses: function () {
             var def = $q.defer();
 
