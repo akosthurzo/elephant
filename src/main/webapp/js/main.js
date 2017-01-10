@@ -15,7 +15,7 @@
             templateUrl: "course_details.html",
             controller: "courseDetailsController"
          })
-         .when("/upload", {
+         .when("/upload/:id", {
             templateUrl: "upload.html",
             controller: "uploadController"
          })

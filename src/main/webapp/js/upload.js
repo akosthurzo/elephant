@@ -19,7 +19,16 @@
       }
    }]);
 
-   var uploadController = function ($scope, $http) {
+   var uploadController = function ($scope, $http, $routeParams, courseService) {
+      $scope.course = {
+         id: $routeParams.id
+      };
+
+      courseService.getCourse($scope.course.id)
+         .then(function(course) {
+            $scope.course = course;
+         });
+
       $scope.module_file = [];
 
       $scope.handler = function (e, files) {
@@ -95,5 +104,5 @@
       };
    };
 
-   app.controller("uploadController", ['$scope', '$http', uploadController]);
+   app.controller("uploadController", ['$scope', '$http', '$routeParams', 'courseService', uploadController]);
 })();
