@@ -54,7 +54,7 @@
             //uploadContent(contentLines);
          };
          reader.readAsText(files[0]);
-      }
+      };
 
       $scope.addCards = function () {
          console.log("Uploading content...");
