@@ -56,7 +56,7 @@
          reader.readAsText(files[0]);
       }
 
-      $scope.uploadCards = function () {
+      $scope.addCards = function () {
          console.log("Uploading content...");
 
          $scope.module.card_links = [];
@@ -73,7 +73,7 @@
          }
       };
 
-      $scope.uploadModules = function () {
+      $scope.addModule = function () {
          $http.post('/api/modules', {name: $scope.module.name, cards: $scope.module.card_links})
             .then(function successCallback(response) {
                   console.log("SUCCESS! " + response);
