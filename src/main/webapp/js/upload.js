@@ -88,15 +88,22 @@
                   console.log("SUCCESS! " + response);
 
                   var req = {
-                     method: "PUT",
-                     url: "/api/modules/1/cards",
+                     method: "POST",
+                     url: '/api/courses/' + $scope.course.id + '/modules',
                      headers: {
                         "Content-Type": "text/uri-list"
                      },
-                     data: $scope.module.cards
-                  }
+                     data: response.data._links.self.href
+                  };
 
-                  //$http(req).then(function successCallback(response) {console.log("ADD OK!");}, function errorCallback(response) {console.log("ADD NOT OK!");});
+                  $http(req).then(
+                     function successCallback(response) {
+                        console.log("ADD OK!");
+                     },
+                     function errorCallback(response) {
+                        console.log("ADD NOT OK!");
+                     });
+
                },
                function errorCallback(response) {
                   console.log("ERROR! " + response);
