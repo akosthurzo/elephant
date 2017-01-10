@@ -7,6 +7,20 @@
 
         <a href="#!/upload/{{course.id}}">Upload module</a>
     </div>
+
+    <h4>Modules</h4>
+
+    <table>
+        <tr>
+            <th>Module Name</th>
+            <th>Number of cards</th>
+        </tr>
+        <tr ng-repeat="module in course.modules">
+            <td>{{ module.name }}</td>
+            <td>{{ module.cards.length }}</td>
+        </tr>
+    </table>
+
     <div>
         <div>
             <button type="submit">Update Course</button>
