@@ -39,7 +39,7 @@
             return def.promise;
          },
 
-         getCourseWithModules : function (id) {
+         getCourseWithModules: function (id) {
             var def = $q.defer();
 
             this.getCourse(id)
