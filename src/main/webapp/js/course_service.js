@@ -61,6 +61,54 @@
             return def.promise;
          },
 
+         getCards: function(module) {
+            var def = $q.defer();
+
+            $http.get(module._links.cards.href)
+               .then(function successCallback(response) {
+                     console.log("getCourseWithModulesAndCards SUCCESS! " + response);
+
+                     module.cards = response.data._embedded.cards;
+
+                     def.resolve(module);
+                  },
+                  function errorCallback(response) {
+                     console.log("getCourseWithModulesAndCards ERROR! " + response);
+                     def.reject("getCourseWithModulesAndCards ERROR! " + response);
+                  });
+
+            return def.promise;
+         },
+
+         getCourseWithModulesAndCards: function (id) {
+            var instance = this;
+
+            var populateCards = function(course) {
+               var promises = [];
+
+               angular.forEach(course.modules, function(module) {
+                  var promise = instance.getCards(module);
+
+                  promises.push(promise);
+               });
+
+               return $q.all(promises);
+            };
+
+            var def = $q.defer();
+
+            this.getCourseWithModules(id)
+               .then(function(course) {
+                  populateCards(course).then(
+                     function(data) {
+                        def.resolve(course);
+                     }
+                  );
+               });
+
+            return def.promise;
+         },
+
          getAllCourses: function () {
             var def = $q.defer();
 
