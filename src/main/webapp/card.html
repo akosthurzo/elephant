@@ -1,0 +1,27 @@
+<form role="form" ng-submit="updateModule()">
+   <div>
+      <label for="module_name">Module Name</label>
+      <div>
+         <input type="text" id="module_name" placeholder="Module name" ng-model="module.name">
+      </div>
+   </div>
+
+   <h4>Cards</h4>
+
+   <table>
+      <tr>
+         <th>Side 1</th>
+         <th>Side 2</th>
+      </tr>
+      <tr ng-repeat="card in module.cards">
+         <td>{{ card.side1 }}</td>
+         <td>{{ card.side2 }}</td>
+      </tr>
+   </table>
+
+   <div>
+      <div>
+         <button type="submit">Update Course</button>
+      </div>
+   </div>
+</form>

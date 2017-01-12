@@ -19,6 +19,10 @@
             templateUrl: "upload.html",
             controller: "uploadController"
          })
+         .when("/cards/:module_id", {
+            templateUrl: "card.html",
+            controller: "cardController"
+         })
          .otherwise({
             templateUrl: "404.html"
          });

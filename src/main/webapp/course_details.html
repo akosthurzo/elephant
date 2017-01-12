@@ -16,7 +16,7 @@
             <th>Number of cards</th>
         </tr>
         <tr ng-repeat="module in course.modules">
-            <td>{{ module.name }}</td>
+            <td><a href="#!/cards/{{ module.id }}">{{ module.name }}</a></td>
             <td>{{ module.cards.length }}</td>
         </tr>
     </table>
