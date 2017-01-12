@@ -189,6 +189,37 @@
                         });
                });
          },
+
+         getModule: function(module_id) {
+            var def = $q.defer();
+
+            $http.get('/api/modules/' + module_id)
+               .then(function successCallback(response) {
+                     console.log("getModule SUCCESS! " + response);
+                     def.resolve(response.data);
+                  },
+                  function errorCallback(response) {
+                     console.log("getModule ERROR! " + response);
+                     def.reject("getModule ERROR! " + response);
+                  });
+
+            return def.promise;
+         },
+
+         getModuleWithCards: function(module_id) {
+            var instance = this;
+
+            var def = $q.defer();
+
+            this.getModule(module_id)
+               .then(function(module) {
+                  instance.getCards(module);
+
+                  def.resolve(module);
+               });
+
+            return def.promise;
+         },
          }
       };
    }]);
