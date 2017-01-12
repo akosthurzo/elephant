@@ -238,9 +238,7 @@
             return def.promise;
          },
 
-         deleteCard: function (module, card) {
-            module.cards.splice(module.cards.indexOf(card), 1);
-
+         updateCardOrder: function (module) {
             var cardUris = module.cards.map(function (c) {
                return c._links.self.href;
             });
@@ -252,13 +250,36 @@
             };
 
             $http(req).then(function successCallback(response) {
-                  console.log("deleteCard SUCCESS! " + response);
+                  console.log("updateCardOrder SUCCESS! " + response);
                   console.dir(response);
                },
                function errorCallback(response) {
-                  console.log("deleteCard ERROR! ");
+                  console.log("updateCardOrder ERROR! ");
                   console.dir(response);
                });
+         },
+
+         deleteCard: function (module, card) {
+            module.cards.splice(module.cards.indexOf(card), 1);
+
+            this.updateCardOrder(module)
+         },
+
+         updateCard: function (card) {
+            var def = $q.defer();
+
+            $http.put('/api/cards/' + card.id, card)
+               .then(function successCallback(response) {
+                     console.log("updateCard SUCCESS! " + response);
+                     console.dir(response);
+                     def.resolve(response.data);
+                  },
+                  function errorCallback(response) {
+                     console.log("updateCard ERROR! " + response);
+                     def.reject("updateCard ERROR! " + response);
+                  });
+
+            return def.promise;
          }
       };
    }]);

@@ -11,7 +11,7 @@
       <th>Actions</th>
    </tr>
    </thead>
-   <tbody ui-sortable ng-model="module.cards">
+   <tbody ui-sortable="sortableOptions" ng-model="module.cards">
    <tr ng-repeat="card in module.cards" style="cursor: move;">
       <td><span editable-text="card.side1" e-form="cardRowForm">{{ card.side1 }}</span></td>
       <td><span editable-text="card.side2" e-form="cardRowForm">{{ card.side2 }}</span></td>

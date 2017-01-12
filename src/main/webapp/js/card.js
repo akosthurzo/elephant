@@ -20,8 +20,17 @@
       };
 
       $scope.updateCard = function (card) {
-         console.log("updateCard:");
-         console.dir(card);
+         courseService.updateCard(card)
+            .then(function (c) {
+               $scope.module.cards[$scope.module.cards.indexOf(card)] = c;
+            })
+      };
+
+      $scope.sortableOptions = {
+         stop: function (e, ui) {
+            courseService.updateCardOrder($scope.module);
+         }
+
       };
 
       courseService.getModuleWithCards($scope.module.id)
