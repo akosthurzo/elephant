@@ -13,6 +13,12 @@
             });
       };
 
+      $scope.deleteCard = function(card) {
+         console.log("removeCard:");
+         console.dir(card);
+         courseService.deleteCard($scope.module, card);
+      };
+
       courseService.getModuleWithCards($scope.module.id)
          .then(function(module) {
             $scope.module = module;

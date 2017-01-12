@@ -236,6 +236,29 @@
                   });
 
             return def.promise;
+         },
+
+         deleteCard: function(module, card) {
+            module.cards.splice(module.cards.indexOf(card), 1);
+
+            var cardUris = module.cards.map(function(c) {
+               return c._links.self.href;
+            });
+
+            var req = {
+               method: "PUT",
+               url: '/api/modules/' + module.id,
+               data: {id: module.id, name: module.name, cards: cardUris}
+            };
+
+            $http(req).then(function successCallback(response) {
+               console.log("deleteCard SUCCESS! " + response);
+               console.dir(response);
+            },
+            function errorCallback(response) {
+               console.log("deleteCard ERROR! ");
+               console.dir(response);
+            });
          }
       };
    }]);
