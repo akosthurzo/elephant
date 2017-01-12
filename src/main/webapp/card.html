@@ -5,26 +5,29 @@
 
 <table>
    <thead>
-      <tr>
-         <th>Side 1</th>
-         <th>Side 2</th>
-         <th>Actions</th>
-      </tr>
+   <tr>
+      <th>Side 1</th>
+      <th>Side 2</th>
+      <th>Actions</th>
+   </tr>
    </thead>
    <tbody ui-sortable ng-model="module.cards">
-      <tr ng-repeat="card in module.cards" style="cursor: move;">
-         <td><span editable-text="card.side1" e-form="cardRowForm">{{ card.side1 }}</span></td>
-         <td><span editable-text="card.side2" e-form="cardRowForm">{{ card.side2 }}</span></td>
-         <td>
-            <form editable-form name="cardRowForm" onaftersave="updateCard(card)" ng-show="cardRowForm.$visible" class="form-buttons form-inline" shown="inserted == card">
-               <button type="submit" ng-disabled="cardRowForm.$waiting" class="btn btn-primary">save</button>
-               <button type="button" ng-disabled="cardRowForm.$waiting" ng-click="cardRowForm.$cancel()" class="btn btn-default">cancel</button>
-            </form>
-            <div class="buttons" ng-show="!cardRowForm.$visible">
-               <button type="button" class="btn btn-primary" ng-click="cardRowForm.$show()">edit</button>
-               <button type="button" class="btn btn-danger" ng-click="deleteCard(card)">del</button>
-            </div>
-         </td>
-      </tr>
+   <tr ng-repeat="card in module.cards" style="cursor: move;">
+      <td><span editable-text="card.side1" e-form="cardRowForm">{{ card.side1 }}</span></td>
+      <td><span editable-text="card.side2" e-form="cardRowForm">{{ card.side2 }}</span></td>
+      <td>
+         <form editable-form name="cardRowForm" onaftersave="updateCard(card)" ng-show="cardRowForm.$visible"
+               class="form-buttons form-inline" shown="inserted == card">
+            <button type="submit" ng-disabled="cardRowForm.$waiting" class="btn btn-primary">save</button>
+            <button type="button" ng-disabled="cardRowForm.$waiting" ng-click="cardRowForm.$cancel()"
+                    class="btn btn-default">cancel
+            </button>
+         </form>
+         <div class="buttons" ng-show="!cardRowForm.$visible">
+            <button type="button" class="btn btn-primary" ng-click="cardRowForm.$show()">edit</button>
+            <button type="button" class="btn btn-danger" ng-click="deleteCard(card)">del</button>
+         </div>
+      </td>
+   </tr>
    </tbody>
 </table>

@@ -43,7 +43,7 @@
             var def = $q.defer();
 
             this.getCourse(id)
-               .then(function(course) {
+               .then(function (course) {
                   $http.get(course._links.modules.href)
                      .then(function successCallback(response) {
                            console.log("getCourseWithModules SUCCESS! " + response);
@@ -61,7 +61,7 @@
             return def.promise;
          },
 
-         getCards: function(module) {
+         getCards: function (module) {
             var def = $q.defer();
 
             $http.get(module._links.cards.href)
@@ -83,10 +83,10 @@
          getCourseWithModulesAndCards: function (id) {
             var instance = this;
 
-            var populateCards = function(course) {
+            var populateCards = function (course) {
                var promises = [];
 
-               angular.forEach(course.modules, function(module) {
+               angular.forEach(course.modules, function (module) {
                   var promise = instance.getCards(module);
 
                   promises.push(promise);
@@ -98,9 +98,9 @@
             var def = $q.defer();
 
             this.getCourseWithModules(id)
-               .then(function(course) {
+               .then(function (course) {
                   populateCards(course).then(
-                     function(data) {
+                     function (data) {
                         def.resolve(course);
                      }
                   );
@@ -110,7 +110,7 @@
          },
 
          addCards: function (cards) {
-          var addCard = function(card) {
+            var addCard = function (card) {
                var def = $q.defer();
 
                $http.post('/api/cards', card)
@@ -130,7 +130,7 @@
             var promises = [];
             var card_links = [];
 
-            angular.forEach(cards, function(card) {
+            angular.forEach(cards, function (card) {
                promises.push(addCard(card));
             });
 
@@ -153,12 +153,12 @@
             return def.promise;
          },
 
-         addModuleWithCards: function(course, module) {
+         addModuleWithCards: function (course, module) {
             this.addCards(module.cards)
-               .then(function(cardArray) {
+               .then(function (cardArray) {
                   module.cards = cardArray;
 
-                  var card_links = cardArray.map(function(card) {
+                  var card_links = cardArray.map(function (card) {
                      return card._links.self.href;
                   });
 
@@ -190,7 +190,7 @@
                });
          },
 
-         getModule: function(module_id) {
+         getModule: function (module_id) {
             var def = $q.defer();
 
             $http.get('/api/modules/' + module_id)
@@ -206,13 +206,13 @@
             return def.promise;
          },
 
-         getModuleWithCards: function(module_id) {
+         getModuleWithCards: function (module_id) {
             var instance = this;
 
             var def = $q.defer();
 
             this.getModule(module_id)
-               .then(function(module) {
+               .then(function (module) {
                   instance.getCards(module);
 
                   def.resolve(module);
@@ -221,7 +221,7 @@
             return def.promise;
          },
 
-         updateModule: function(module) {
+         updateModule: function (module) {
             var def = $q.defer();
 
             $http.put('/api/modules/' + module.id, module)
@@ -238,10 +238,10 @@
             return def.promise;
          },
 
-         deleteCard: function(module, card) {
+         deleteCard: function (module, card) {
             module.cards.splice(module.cards.indexOf(card), 1);
 
-            var cardUris = module.cards.map(function(c) {
+            var cardUris = module.cards.map(function (c) {
                return c._links.self.href;
             });
 
@@ -252,13 +252,13 @@
             };
 
             $http(req).then(function successCallback(response) {
-               console.log("deleteCard SUCCESS! " + response);
-               console.dir(response);
-            },
-            function errorCallback(response) {
-               console.log("deleteCard ERROR! ");
-               console.dir(response);
-            });
+                  console.log("deleteCard SUCCESS! " + response);
+                  console.dir(response);
+               },
+               function errorCallback(response) {
+                  console.log("deleteCard ERROR! ");
+                  console.dir(response);
+               });
          }
       };
    }]);

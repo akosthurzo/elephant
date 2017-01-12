@@ -6,21 +6,26 @@
          id: $routeParams.module_id
       };
 
-      $scope.updateModuleName = function() {
+      $scope.updateModuleName = function () {
          courseService.updateModule($scope.module)
-            .then(function(module) {
+            .then(function (module) {
                $scope.module.name = module.name;
             });
       };
 
-      $scope.deleteCard = function(card) {
+      $scope.deleteCard = function (card) {
          console.log("removeCard:");
          console.dir(card);
          courseService.deleteCard($scope.module, card);
       };
 
+      $scope.updateCard = function (card) {
+         console.log("updateCard:");
+         console.dir(card);
+      };
+
       courseService.getModuleWithCards($scope.module.id)
-         .then(function(module) {
+         .then(function (module) {
             $scope.module = module;
          });
    };

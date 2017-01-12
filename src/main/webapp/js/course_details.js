@@ -7,11 +7,11 @@
       };
 
       courseService.getCourseWithModulesAndCards($scope.course.id)
-         .then(function(course) {
+         .then(function (course) {
             $scope.course = course;
          });
 
-      $scope.updateCourse = function() {
+      $scope.updateCourse = function () {
 
       };
    };

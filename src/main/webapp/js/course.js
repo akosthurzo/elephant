@@ -6,7 +6,7 @@
 
       $scope.refreshCourses = function () {
          courseService.getAllCourses()
-            .then(function(data) {
+            .then(function (data) {
                $scope.courses = data;
             });
       };
@@ -27,7 +27,7 @@
             });
       };
 
-      $scope.goToDetails = function(course) {
+      $scope.goToDetails = function (course) {
          $location.path("/course/" + course.id);
       };
 

@@ -1,29 +1,33 @@
 <form class="form-horizontal" role="form" ng-submit="addCourse()">
-    <div>
-        <label for="course_name">Course Name</label>
+   <div>
+      <label for="course_name">Course Name</label>
 
-        <div>
-            <input type="text" id="course_name" placeholder="Course name" ng-model="course.name">
-        </div>
-    </div>
-    <div>
-        <div>
-            <button type="submit">New Course</button>
-        </div>
-    </div>
+      <div>
+         <input type="text" id="course_name" placeholder="Course name" ng-model="course.name">
+      </div>
+   </div>
+   <div>
+      <div>
+         <button type="submit">New Course</button>
+      </div>
+   </div>
 </form>
 
 <table>
-    <tr>
-        <th>Course name</th>
-        <th>Number of modules</th>
-        <th>Number of cards</th>
-        <th>Actions</th>
-    </tr>
-    <tr ng-repeat="course in courses">
-        <td><button class="btn btn-link" ng-click="goToDetails(course)">{{ course.name }}</button></td>
-        <td>..</td>
-        <td>..</td>
-        <td><button ng-click="deleteCourse(course.id)">Delete</button></td>
-    </tr>
+   <tr>
+      <th>Course name</th>
+      <th>Number of modules</th>
+      <th>Number of cards</th>
+      <th>Actions</th>
+   </tr>
+   <tr ng-repeat="course in courses">
+      <td>
+         <button class="btn btn-link" ng-click="goToDetails(course)">{{ course.name }}</button>
+      </td>
+      <td>..</td>
+      <td>..</td>
+      <td>
+         <button ng-click="deleteCourse(course.id)">Delete</button>
+      </td>
+   </tr>
 </table>

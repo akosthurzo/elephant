@@ -25,7 +25,7 @@
       };
 
       courseService.getCourse($scope.course.id)
-         .then(function(course) {
+         .then(function (course) {
             $scope.course = course;
          });
 
@@ -110,7 +110,7 @@
                });
       };
 
-      $scope.addModuleWithCards = function() {
+      $scope.addModuleWithCards = function () {
          courseService.addModuleWithCards($scope.course, $scope.module);
       };
    };
