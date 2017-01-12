@@ -1,5 +1,5 @@
 (function () {
-   var app = angular.module("elephantApp", ["ngRoute"]);
+   var app = angular.module("elephantApp", ["ngRoute", "xeditable"]);
 
    app.config(function ($routeProvider) {
       $routeProvider
@@ -26,5 +26,9 @@
          .otherwise({
             templateUrl: "404.html"
          });
+   });
+
+   app.run(function(editableOptions) {
+      editableOptions.theme = 'bs3'; // bootstrap3 theme. Can be also 'bs2', 'default'
    });
 })();

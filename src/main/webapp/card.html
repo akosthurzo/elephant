@@ -1,3 +1,6 @@
+<span editable-text="module.name" e-form="moduleNameForm">{{ module.name }}</span>
+<button class="btn btn-default" ng-click="moduleNameForm.$show()" ng-hide="moduleNameForm.$visible">Edit</button>
+
 <form role="form" ng-submit="updateModule()">
    <div>
       <label for="module_name">Module Name</label>
