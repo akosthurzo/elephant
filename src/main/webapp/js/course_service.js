@@ -109,6 +109,34 @@
             return def.promise;
          },
 
+         addCards: function (cards) {
+          var addCard = function(card) {
+               var def = $q.defer();
+
+               $http.post('/api/cards', card)
+                  .then(function successCallback(response) {
+                        console.log("addCard SUCCESS! " + response);
+                        //card_links.push(response.data._links.self.href);
+
+                        def.resolve(response.data);
+                     },
+                     function errorCallback(response) {
+                        console.log("addCard ERROR! " + response);
+                     });
+
+               return def.promise;
+            };
+
+            var promises = [];
+            var card_links = [];
+
+            angular.forEach(cards, function(card) {
+               promises.push(addCard(card));
+            });
+
+            return $q.all(promises);
+         },
+
          getAllCourses: function () {
             var def = $q.defer();
 
@@ -123,6 +151,44 @@
                   });
 
             return def.promise;
+         },
+
+         addModuleWithCards: function(course, module) {
+            this.addCards(module.cards)
+               .then(function(cardArray) {
+                  module.cards = cardArray;
+
+                  var card_links = cardArray.map(function(card) {
+                     return card._links.self.href;
+                  });
+
+                  $http.post('/api/modules', {name: module.name, cards: card_links})
+                     .then(function successCallback(response) {
+                           console.log("SUCCESS! " + response);
+
+                           var req = {
+                              method: "POST",
+                              url: '/api/courses/' + course.id + '/modules',
+                              headers: {
+                                 "Content-Type": "text/uri-list"
+                              },
+                              data: response.data._links.self.href
+                           };
+
+                           $http(req).then(
+                              function successCallback(response) {
+                                 console.log("ADD OK!");
+                              },
+                              function errorCallback(response) {
+                                 console.log("ADD NOT OK!");
+                              });
+
+                        },
+                        function errorCallback(response) {
+                           console.log("ERROR! " + response);
+                        });
+               });
+         },
          }
       };
    }]);

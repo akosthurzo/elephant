@@ -109,6 +109,10 @@
                   console.log("ERROR! " + response);
                });
       };
+
+      $scope.addModuleWithCards = function() {
+         courseService.addModuleWithCards($scope.course, $scope.module);
+      };
    };
 
    app.controller("uploadController", ['$scope', '$http', '$routeParams', 'courseService', uploadController]);
