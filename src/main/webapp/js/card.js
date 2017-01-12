@@ -6,6 +6,13 @@
          id: $routeParams.module_id
       };
 
+      $scope.updateModuleName = function() {
+         courseService.updateModule($scope.module)
+            .then(function(module) {
+               $scope.module.name = module.name;
+            });
+      };
+
       courseService.getModuleWithCards($scope.module.id)
          .then(function(module) {
             $scope.module = module;

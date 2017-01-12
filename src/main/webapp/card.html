@@ -1,4 +1,4 @@
-<span editable-text="module.name" e-form="moduleNameForm">{{ module.name }}</span>
+<span editable-text="module.name" e-form="moduleNameForm" onaftersave="updateModuleName()">{{ module.name }}</span>
 <button class="btn btn-default" ng-click="moduleNameForm.$show()" ng-hide="moduleNameForm.$visible">Edit</button>
 
 <form role="form" ng-submit="updateModule()">

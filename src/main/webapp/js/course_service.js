@@ -220,6 +220,22 @@
 
             return def.promise;
          },
+
+         updateModule: function(module) {
+            var def = $q.defer();
+
+            $http.put('/api/modules/' + module.id, module)
+               .then(function successCallback(response) {
+                     console.log("updateModule SUCCESS! " + response);
+                     console.dir(response);
+                     def.resolve(response.data);
+                  },
+                  function errorCallback(response) {
+                     console.log("updateModule ERROR! " + response);
+                     def.reject("updateModule ERROR! " + response);
+                  });
+
+            return def.promise;
          }
       };
    }]);
