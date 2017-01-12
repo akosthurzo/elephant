@@ -1,5 +1,5 @@
 (function () {
-   var app = angular.module("elephantApp", ["ngRoute", "xeditable"]);
+   var app = angular.module("elephantApp", ["ngRoute", "xeditable", 'ui.sortable']);
 
    app.config(function ($routeProvider) {
       $routeProvider
