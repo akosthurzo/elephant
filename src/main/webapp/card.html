@@ -1,33 +1,36 @@
-<span editable-text="module.name" e-form="moduleNameForm" onaftersave="updateModuleName()">{{ module.name }}</span>
-<button class="btn btn-default" ng-click="moduleNameForm.$show()" ng-hide="moduleNameForm.$visible">Edit</button>
+<div class="container-fluid">
+   <h3>
+      <span editable-text="module.name" e-form="moduleNameForm"
+            onaftersave="updateModuleName()">{{ module.name }}</span>
+      <button class="btn btn-default" ng-click="moduleNameForm.$show()" ng-hide="moduleNameForm.$visible">Edit</button>
+   </h3>
 
-<h4>Cards</h4>
-
-<table>
-   <thead>
-   <tr>
-      <th>Side 1</th>
-      <th>Side 2</th>
-      <th>Actions</th>
-   </tr>
-   </thead>
-   <tbody ui-sortable="sortableOptions" ng-model="module.cards">
-   <tr ng-repeat="card in module.cards" style="cursor: move;">
-      <td><span editable-text="card.side1" e-form="cardRowForm">{{ card.side1 }}</span></td>
-      <td><span editable-text="card.side2" e-form="cardRowForm">{{ card.side2 }}</span></td>
-      <td>
-         <form editable-form name="cardRowForm" onaftersave="updateCard(card)" ng-show="cardRowForm.$visible"
-               class="form-buttons form-inline" shown="inserted == card">
-            <button type="submit" ng-disabled="cardRowForm.$waiting" class="btn btn-primary">save</button>
-            <button type="button" ng-disabled="cardRowForm.$waiting" ng-click="cardRowForm.$cancel()"
-                    class="btn btn-default">cancel
-            </button>
-         </form>
-         <div class="buttons" ng-show="!cardRowForm.$visible">
-            <button type="button" class="btn btn-primary" ng-click="cardRowForm.$show()">edit</button>
-            <button type="button" class="btn btn-danger" ng-click="deleteCard(card)">del</button>
-         </div>
-      </td>
-   </tr>
-   </tbody>
-</table>
+   <table class="table table-striped">
+      <thead>
+      <tr>
+         <th>Side 1</th>
+         <th>Side 2</th>
+         <th>Actions</th>
+      </tr>
+      </thead>
+      <tbody ui-sortable="sortableOptions" ng-model="module.cards">
+      <tr ng-repeat="card in module.cards" style="cursor: move;">
+         <td><span editable-text="card.side1" e-form="cardRowForm">{{ card.side1 }}</span></td>
+         <td><span editable-text="card.side2" e-form="cardRowForm">{{ card.side2 }}</span></td>
+         <td>
+            <form editable-form name="cardRowForm" onaftersave="updateCard(card)" ng-show="cardRowForm.$visible"
+                  class="form-buttons form-inline" shown="inserted == card">
+               <button type="submit" ng-disabled="cardRowForm.$waiting" class="btn btn-primary">Save</button>
+               <button type="button" ng-disabled="cardRowForm.$waiting" ng-click="cardRowForm.$cancel()"
+                       class="btn btn-default">Cancel
+               </button>
+            </form>
+            <div class="buttons" ng-show="!cardRowForm.$visible">
+               <button type="button" class="btn btn-primary" ng-click="cardRowForm.$show()">Edit</button>
+               <button type="button" class="btn btn-danger" ng-click="deleteCard(card)">Delete</button>
+            </div>
+         </td>
+      </tr>
+      </tbody>
+   </table>
+</div>
