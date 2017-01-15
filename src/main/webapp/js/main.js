@@ -11,7 +11,7 @@
             templateUrl: "course.html",
             controller: "courseController"
          })
-         .when("/course/:id", {
+         .when("/course/:course_id", {
             templateUrl: "module.html",
             controller: "courseDetailsController"
          })

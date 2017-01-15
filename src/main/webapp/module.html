@@ -1,29 +1,38 @@
-<form role="form" ng-submit="updateCourse()">
-   <div>
-      <label for="course_name">Course Name</label>
-      <div>
-         <input type="text" id="course_name" placeholder="Course name" ng-model="course.name">
-      </div>
+<div class="container-fluid">
+   <h3>
+      <span editable-text="course.name" e-form="courseNameForm"
+            onaftersave="updateCourseName()">{{ course.name }}</span>
+      <button class="btn btn-default" ng-click="courseNameForm.$show()" ng-hide="courseNameForm.$visible">Edit</button>
+   </h3>
 
-      <a href="#!/upload/{{course.id}}">Upload module</a>
-   </div>
+   <a href="#!/upload/{{course.id}}">Upload module</a>
 
-   <h4>Modules</h4>
-
-   <table>
+   <table class="table table-striped">
+      <thead>
       <tr>
          <th>Module Name</th>
          <th>Number of cards</th>
+         <th>Actions</th>
       </tr>
-      <tr ng-repeat="module in course.modules">
-         <td><a href="#!/cards/{{ module.id }}">{{ module.name }}</a></td>
-         <td>{{ module.cards.length }}</td>
+      </thead>
+      <tbody ui-sortable="sortableOptions" ng-model="course.modules">
+      <tr ng-repeat="module in course.modules" style="cursor: move;">
+         <td><a href="#!/cards/{{ module.id }}"><span editable-text="module.name" e-form="moduleRowForm">{{ module.name }}</span></a></td>
+         <td><span>{{ module.cards.length }}</span></td>
+         <td>
+            <form editable-form name="moduleRowForm" onaftersave="updateModule(module)" ng-show="moduleRowForm.$visible"
+                  class="form-buttons form-inline" shown="inserted == module">
+               <button type="submit" ng-disabled="moduleRowForm.$waiting" class="btn btn-primary">Save</button>
+               <button type="button" ng-disabled="moduleRowForm.$waiting" ng-click="moduleRowForm.$cancel()"
+                       class="btn btn-default">Cancel
+               </button>
+            </form>
+            <div class="buttons" ng-show="!moduleRowForm.$visible">
+               <button type="button" class="btn btn-primary" ng-click="moduleRowForm.$show()">Edit</button>
+               <button type="button" class="btn btn-danger" ng-click="deleteModule(module)">Delete</button>
+            </div>
+         </td>
       </tr>
+      </tbody>
    </table>
-
-   <div>
-      <div>
-         <button type="submit">Update Course</button>
-      </div>
-   </div>
-</form>
+</div>

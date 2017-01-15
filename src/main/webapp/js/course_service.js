@@ -238,6 +238,23 @@
             return def.promise;
          },
 
+         updateCourse: function (course) {
+            var def = $q.defer();
+
+            $http.put('/api/courses/' + course.id, course)
+               .then(function successCallback(response) {
+                     console.log("updateCourse SUCCESS! " + response);
+                     console.dir(response);
+                     def.resolve(response.data);
+                  },
+                  function errorCallback(response) {
+                     console.log("updateCourse ERROR! " + response);
+                     def.reject("updateCourse ERROR! " + response);
+                  });
+
+            return def.promise;
+         },
+
          updateCardOrder: function (module) {
             var cardUris = module.cards.map(function (c) {
                return c._links.self.href;
@@ -259,10 +276,37 @@
                });
          },
 
+         updateModuleOrder: function (course) {
+            var moduleUris = course.modules.map(function (m) {
+               return m._links.self.href;
+            });
+
+            var req = {
+               method: "PUT",
+               url: '/api/courses/' + course.id,
+               data: {id: course.id, name: course.name, modules: moduleUris}
+            };
+
+            $http(req).then(function successCallback(response) {
+                  console.log("updateModuleOrder SUCCESS! " + response);
+                  console.dir(response);
+               },
+               function errorCallback(response) {
+                  console.log("updateModuleOrder ERROR! ");
+                  console.dir(response);
+               });
+         },
+
          deleteCard: function (module, card) {
             module.cards.splice(module.cards.indexOf(card), 1);
 
-            this.updateCardOrder(module)
+            this.updateCardOrder(module);
+         },
+
+         deleteModule: function (course, module) {
+            course.modules.splice(course.modules.indexOf(module), 1);
+
+            this.updateModuleOrder(course);
          },
 
          updateCard: function (card) {
