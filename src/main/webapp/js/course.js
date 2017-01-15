@@ -4,6 +4,18 @@
    var courseController = function ($scope, $http, $location, courseService) {
       $scope.course = {};
 
+      $scope.updateCourseName = function (course) {
+         courseService.updateCourse(course)
+            .then(function (c) {
+               $scope.courses[$scope.courses.indexOf(course)].name = c.name;
+            });
+      };
+
+      $scope.deleteCourse = function (course) {
+         courseService.deleteCourse(course);
+         $scope.refreshCourses();
+      };
+
       $scope.refreshCourses = function () {
          courseService.getAllCourses()
             .then(function (data) {
@@ -18,17 +30,6 @@
             });
 
          $scope.course = {};
-      };
-
-      $scope.deleteCourse = function (id) {
-         courseService.deleteCourse(id)
-            .then(function () {
-               $scope.refreshCourses();
-            });
-      };
-
-      $scope.goToDetails = function (course) {
-         $location.path("/course/" + course.id);
       };
 
       $scope.refreshCourses();

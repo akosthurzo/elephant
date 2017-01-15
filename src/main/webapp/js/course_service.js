@@ -13,8 +13,8 @@
                   });
          },
 
-         deleteCourse: function (id) {
-            return $http.delete('/api/courses/' + id)
+         deleteCourse: function (course) {
+            return $http.delete('/api/courses/' + course.id)
                .then(function successCallback(response) {
                      console.log("deleteCourse SUCCESS! " + response);
                   },

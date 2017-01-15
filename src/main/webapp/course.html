@@ -1,33 +1,45 @@
-<form class="form-horizontal" role="form" ng-submit="addCourse()">
-   <div>
-      <label for="course_name">Course Name</label>
+<div class="container-fluid">
+   <h3>Add new Course</h3>
 
+   <form class="form-horizontal" role="form" ng-submit="addCourse()">
       <div>
-         <input type="text" id="course_name" placeholder="Course name" ng-model="course.name">
-      </div>
-   </div>
-   <div>
-      <div>
-         <button type="submit">New Course</button>
-      </div>
-   </div>
-</form>
+         <label for="course_name">Course Name</label>
 
-<table>
-   <tr>
-      <th>Course name</th>
-      <th>Number of modules</th>
-      <th>Number of cards</th>
-      <th>Actions</th>
-   </tr>
-   <tr ng-repeat="course in courses">
-      <td>
-         <button class="btn btn-link" ng-click="goToDetails(course)">{{ course.name }}</button>
-      </td>
-      <td>..</td>
-      <td>..</td>
-      <td>
-         <button ng-click="deleteCourse(course.id)">Delete</button>
-      </td>
-   </tr>
-</table>
+         <div>
+            <input type="text" id="course_name" placeholder="Course name" ng-model="course.name">
+         </div>
+      </div>
+      <div>
+         <div>
+            <button type="submit">New Course</button>
+         </div>
+      </div>
+   </form>
+
+   <table class="table table-striped">
+      <thead>
+      <tr>
+         <th>Course name</th>
+         <th>Actions</th>
+      </tr>
+      </thead>
+      <tbody ng-model="courses">
+      <tr ng-repeat="course in courses" style="cursor: move;">
+         <td><a href="#!/course/{{ course.id }}"><span editable-text="course.name" e-form="courseRowForm">{{ course.name }}</span></a></td>
+         <td>
+            <form editable-form name="courseRowForm" onaftersave="updateCourseName(course)" ng-show="courseRowForm.$visible"
+                  class="form-buttons form-inline" shown="inserted == course">
+               <button type="submit" ng-disabled="courseRowForm.$waiting" class="btn btn-primary">Save</button>
+               <button type="button" ng-disabled="courseRowForm.$waiting" ng-click="courseRowForm.$cancel()"
+                       class="btn btn-default">Cancel
+               </button>
+            </form>
+            <div class="buttons" ng-show="!courseRowForm.$visible">
+               <button type="button" class="btn btn-primary" ng-click="courseRowForm.$show()">Edit</button>
+               <button type="button" class="btn btn-danger" ng-click="deleteCourse(course)">Delete</button>
+            </div>
+         </td>
+      </tr>
+      </tbody>
+   </table>
+</div>
