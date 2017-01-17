@@ -10,7 +10,9 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToMany;
+import javax.persistence.ManyToOne;
 import javax.persistence.MapKeyColumn;
+import java.util.Date;
 import java.util.Map;
 
 /**
@@ -28,6 +30,12 @@ public class Card {
     @MapKeyColumn(name = "attribute_key")
     @Column(name = "attribute_value")
     private Map<String, String> attributes;
+    private Long interval;
+    private Double eFactor;
+    private Long repetitionCount;
+    private Date dueDate;
+    @ManyToOne
+    private Module module;
 
     public Long getId() {
         return id;
@@ -59,5 +67,37 @@ public class Card {
 
     public void setAttributes(Map<String, String> attributes) {
         this.attributes = attributes;
+    }
+
+    public Long getInterval() {
+        return interval;
+    }
+
+    public void setInterval(Long interval) {
+        this.interval = interval;
+    }
+
+    public Double geteFactor() {
+        return eFactor;
+    }
+
+    public void seteFactor(Double eFactor) {
+        this.eFactor = eFactor;
+    }
+
+    public Long getRepetitionCount() {
+        return repetitionCount;
+    }
+
+    public void setRepetitionCount(Long repetitionCount) {
+        this.repetitionCount = repetitionCount;
+    }
+
+    public Date getDueDate() {
+        return dueDate;
+    }
+
+    public void setDueDate(Date dueDate) {
+        this.dueDate = dueDate;
     }
 }

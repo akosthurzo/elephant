@@ -17,7 +17,7 @@ public class Module {
     @GeneratedValue
     private Long id;
     private String name;
-    @OneToMany
+    @OneToMany(mappedBy = "module")
     @OrderColumn(name = "card_index")
     private List<Card> cards;
 
