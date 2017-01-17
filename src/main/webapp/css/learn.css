@@ -1,0 +1,12 @@
+.card {
+    min-height: 40px;
+    margin-top: 10px;
+}
+
+.result-button {
+    white-space: normal;
+}
+
+.vis-hidden{
+    visibility: hidden;
+}

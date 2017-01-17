@@ -24,6 +24,11 @@
             controller: "cardController",
             css: "css/card.css"
          })
+         .when("/learn/:course_id", {
+            templateUrl: "learn.html",
+            controller: "learnController",
+            css: "css/learn.css"
+         })
          .otherwise({
             templateUrl: "404.html"
          });
