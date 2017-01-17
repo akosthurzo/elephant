@@ -154,6 +154,26 @@
          },
 
          addModuleWithCards: function (course, module) {
+            var updateModuleReferences = function (module, cards) {
+               angular.forEach(cards, function (card) {
+                  var req = {
+                     method: "PUT",
+                     url: '/api/cards/' + card.id + '/module',
+                     headers: {
+                        "Content-Type": "text/uri-list"
+                     },
+                     data: module._links.self.href
+                  };
+
+                  $http(req).then(function successCallback(response) {
+                        console.log("updateModuleReferences SUCCESS! " + response);
+                     },
+                     function errorCallback(response) {
+                        console.log("updateModuleReferences ERROR! " + response);
+                     });
+               });
+            };
+
             this.addCards(module.cards)
                .then(function (cardArray) {
                   module.cards = cardArray;
@@ -165,6 +185,8 @@
                   $http.post('/api/modules', {name: module.name, cards: card_links})
                      .then(function successCallback(response) {
                            console.log("SUCCESS! " + response);
+
+                           module = response.data;
 
                            var req = {
                               method: "POST",
@@ -178,6 +200,9 @@
                            $http(req).then(
                               function successCallback(response) {
                                  console.log("ADD OK!");
+
+                                 // update module back reference of the cards
+                                 updateModuleReferences(module, cardArray);
                               },
                               function errorCallback(response) {
                                  console.log("ADD NOT OK!");

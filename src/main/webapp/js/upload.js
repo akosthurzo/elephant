@@ -52,7 +52,11 @@
 
                var card = {
                   side1: match[1],
-                  side2: match[2]
+                  side2: match[2],
+                  interval: 1,
+                  eFactor: 2.5,
+                  repetitionCount: 0,
+                  dueDate: moment().subtract(1, 'day').startOf('day')
                };
 
                $scope.module.cards.push(card);
