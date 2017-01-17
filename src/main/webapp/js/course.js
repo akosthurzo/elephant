@@ -12,8 +12,10 @@
       };
 
       $scope.deleteCourse = function (course) {
-         courseService.deleteCourse(course);
-         $scope.refreshCourses();
+         courseService.deleteCourse(course)
+            .then(function () {
+               $scope.refreshCourses();
+            });
       };
 
       $scope.refreshCourses = function () {
