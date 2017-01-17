@@ -11,7 +11,7 @@
          </thead>
          <tbody ng-model="courses">
          <tr ng-repeat="course in courses">
-            <td><a href="#!/course/{{ course.id }}"><span editable-text="course.name" e-form="courseRowForm">{{ course.name }}</span></a>
+            <td><a href="#!/course/{{ course.id }}" editable-text="course.name" e-form="courseRowForm">{{ course.name }}</a>
             </td>
             <td>
                <form editable-form name="courseRowForm" onaftersave="updateCourseName(course)"
