@@ -4,11 +4,11 @@
    app.config(function ($routeProvider) {
       $routeProvider
          .when("/", {
-            templateUrl: "course.html",
+            templateUrl: "courses.html",
             controller: "courseController"
          })
          .when("/courses", {
-            templateUrl: "course.html",
+            templateUrl: "courses.html",
             controller: "courseController"
          })
          .when("/course/:course_id", {
