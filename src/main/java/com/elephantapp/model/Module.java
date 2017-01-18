@@ -4,6 +4,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.OrderColumn;
 import java.util.List;
@@ -20,6 +21,8 @@ public class Module {
     @OneToMany(mappedBy = "module")
     @OrderColumn(name = "card_index")
     private List<Card> cards;
+    @ManyToOne
+    private Course course;
 
     public Long getId() {
         return id;
@@ -43,5 +46,13 @@ public class Module {
 
     public void setCards(List<Card> cards) {
         this.cards = cards;
+    }
+
+    public Course getCourse() {
+        return course;
+    }
+
+    public void setCourse(Course course) {
+        this.course = course;
     }
 }
