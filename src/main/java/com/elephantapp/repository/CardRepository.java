@@ -23,5 +23,5 @@ public interface CardRepository extends CrudRepository<Card, Long> {
 
     @Query("select c from Card c " +
             "where c.module.course.id = ?1 and c.dueDate between ?2 and ?3")
-    List<Card> findByCourseAndDueDateBetween(@Param("module_id") Long module_id, @DateTimeFormat(pattern = "yyyy-MM-dd") @Param("min") Date date1, @DateTimeFormat(pattern = "yyyy-MM-dd") @Param("max") Date date2);
+    List<Card> findByCourseAndDueDateBetween(@Param("course_id") Long module_id, @DateTimeFormat(pattern = "yyyy-MM-dd") @Param("min") Date date1, @DateTimeFormat(pattern = "yyyy-MM-dd") @Param("max") Date date2);
 }
