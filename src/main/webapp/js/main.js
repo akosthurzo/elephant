@@ -19,8 +19,8 @@
             templateUrl: "upload.html",
             controller: "uploadController"
          })
-         .when("/cards/:module_id", {
-            templateUrl: "card.html",
+         .when("/module/:module_id", {
+            templateUrl: "module.html",
             controller: "cardController",
             css: "css/card.css"
          })
