@@ -80,6 +80,40 @@
             return def.promise;
          },
 
+         getCardsByModuleAndDueDateBetween: function (module, minDate, maxDate) {
+            var def = $q.defer();
+
+            $http.get("/api/cards/search/findByModuleAndDueDateBetween?module_id=" + module.id + "&min=" + minDate.format("YYYY-MM-DD") + "&max=" + maxDate.format("YYYY-MM-DD"))
+               .then(function successCallback(response) {
+                     console.log("getCardsByModuleAndDueDateBetween SUCCESS! " + response);
+
+                     def.resolve(response.data);
+                  },
+                  function errorCallback(response) {
+                     console.log("getCardsByModuleAndDueDateBetween ERROR! " + response);
+                     def.reject("getCardsByModuleAndDueDateBetween ERROR! " + response);
+                  });
+
+            return def.promise;
+         },
+
+         getCardsByCourseAndDueDateBetween: function (course, minDate, maxDate) {
+            var def = $q.defer();
+
+            $http.get("/api/cards/search/findByCourseAndDueDateBetween?course_id=" + course.id + "&min=" + minDate.format("YYYY-MM-DD") + "&max=" + maxDate.format("YYYY-MM-DD"))
+               .then(function successCallback(response) {
+                     console.log("getCardsByCourseAndDueDateBetween SUCCESS! " + response);
+
+                     def.resolve(response.data);
+                  },
+                  function errorCallback(response) {
+                     console.log("getCardsByCourseAndDueDateBetween ERROR! " + response);
+                     def.reject("getCardsByCourseAndDueDateBetween ERROR! " + response);
+                  });
+
+            return def.promise;
+         },
+
          getCourseWithModulesAndCards: function (id) {
             var instance = this;
 
@@ -174,6 +208,24 @@
                });
             };
 
+            var updateCourseReference = function (course, module) {
+               var req = {
+                  method: "PUT",
+                  url: '/api/modules/' + module.id + '/course',
+                  headers: {
+                     "Content-Type": "text/uri-list"
+                  },
+                  data: course._links.self.href
+               };
+
+               $http(req).then(function successCallback(response) {
+                     console.log("updateCourseReference SUCCESS! " + response);
+                  },
+                  function errorCallback(response) {
+                     console.log("updateCourseReference ERROR! " + response);
+                  });
+            };
+
             this.addCards(module.cards)
                .then(function (cardArray) {
                   module.cards = cardArray;
@@ -203,6 +255,9 @@
 
                                  // update module back reference of the cards
                                  updateModuleReferences(module, cardArray);
+
+                                 // update course back reference of the module
+                                 updateCourseReference(course, module);
                               },
                               function errorCallback(response) {
                                  console.log("ADD NOT OK!");
