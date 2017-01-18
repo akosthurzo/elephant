@@ -12,7 +12,7 @@
             controller: "courseController"
          })
          .when("/course/:course_id", {
-            templateUrl: "module.html",
+            templateUrl: "course.html",
             controller: "courseDetailsController"
          })
          .when("/upload/:id", {
