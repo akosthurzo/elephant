@@ -17,7 +17,7 @@
       </thead>
       <tbody ui-sortable="sortableOptions" ng-model="course.modules">
       <tr ng-repeat="module in course.modules" style="cursor: move;">
-         <td><a href="#!/cards/{{ module.id }}" editable-text="module.name" e-form="moduleRowForm">{{ module.name }}</a></td>
+         <td><a href="#!/module/{{ module.id }}" editable-text="module.name" e-form="moduleRowForm">{{ module.name }}</a></td>
          <td><span>{{ module.cards.length }}</span></td>
          <td>
             <form editable-form name="moduleRowForm" onaftersave="updateModule(module)" ng-show="moduleRowForm.$visible"
