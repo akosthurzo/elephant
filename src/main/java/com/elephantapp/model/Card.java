@@ -34,7 +34,7 @@ public class Card {
     private Double eFactor;
     private Long repetitionCount;
     private Date dueDate;
-    @ManyToOne
+    @ManyToOne(cascade = CascadeType.ALL)
     private Module module;
 
     public Long getId() {
@@ -99,5 +99,13 @@ public class Card {
 
     public void setDueDate(Date dueDate) {
         this.dueDate = dueDate;
+    }
+
+    public Module getModule() {
+        return module;
+    }
+
+    public void setModule(Module module) {
+        this.module = module;
     }
 }

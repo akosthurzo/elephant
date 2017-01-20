@@ -1,5 +1,6 @@
 package com.elephantapp.model;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
@@ -18,10 +19,10 @@ public class Module {
     @GeneratedValue
     private Long id;
     private String name;
-    @OneToMany(mappedBy = "module")
+    @OneToMany(mappedBy = "module", cascade = CascadeType.ALL, orphanRemoval = true)
     @OrderColumn(name = "card_index")
     private List<Card> cards;
-    @ManyToOne
+    @ManyToOne(cascade = CascadeType.ALL)
     private Course course;
 
     public Long getId() {
