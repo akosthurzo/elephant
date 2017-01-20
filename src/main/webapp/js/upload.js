@@ -21,7 +21,7 @@
 
    var uploadController = function ($scope, $http, $routeParams, courseService) {
       $scope.course = {
-         id: $routeParams.id
+         id: $routeParams.course_id
       };
 
       courseService.getCourse($scope.course.id)
