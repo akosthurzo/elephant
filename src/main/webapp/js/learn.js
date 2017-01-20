@@ -4,9 +4,15 @@
    var learnController = function ($scope, $http, $routeParams, courseService) {
       var index = 0;
 
-      $scope.cards = [];
+      courseService.getCardsByCourseAndDueDateBetween($routeParams.course_id, moment().subtract(10, "years"), moment())
+         .then(function (cards) {
+            shuffle(cards);
 
-      for(var i = 0; i < 10; i++) {
+            $scope.cards = cards;
+            $scope.currentCard = $scope.cards[index];
+         });
+
+      /*for(var i = 0; i < 10; i++) {
          var d = new Date();
 
          d.setDate(new Date().getDate() - 1);
@@ -19,9 +25,7 @@
             repetitionCount: 0,
             dueDate: moment().subtract(1, 'day').startOf('day')
          });
-      }
-
-      $scope.currentCard = $scope.cards[index];
+      }*/
 
       $scope.showAnswer = function () {
          $scope.answerVisible = true;
@@ -30,10 +34,14 @@
       $scope.processResult = function (q) {
          calculate($scope.cards[index], q);
 
-         if (index >= $scope.cards.length - 1) {
+         if ($scope.cards.length == 0) {
             $scope.message = "No more cards";
 
             return;
+         }
+
+         if (index >= $scope.cards.length - 1) {
+            index = -1;
          }
 
          $scope.answerVisible = false;
@@ -71,9 +79,36 @@
 
          card.dueDate = moment().add(interval, 'days').startOf('day');
          card.interval = interval;
+
          console.log("updated card:");
          console.dir(card);
-      }
+
+         courseService.updateCard(card);
+
+         removeCardFromArray(card);
+
+         console.log("cards left: " + $scope.cards.length);
+      };
+
+      var shuffle = function (a) {
+         var j, x, i;
+         for (i = a.length; i; i--) {
+            j = Math.floor(Math.random() * i);
+            x = a[i - 1];
+            a[i - 1] = a[j];
+            a[j] = x;
+         }
+      };
+
+      var removeCardFromArray = function (card) {
+         if ($scope.currentCard == card) {
+            var i = $scope.cards.indexOf(card);
+
+            $scope.cards.splice(i, 1);
+
+            index--;
+         }
+      };
    };
 
    app.controller("learnController", ['$scope', '$http', '$routeParams', 'courseService', learnController]);

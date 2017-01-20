@@ -80,14 +80,14 @@
             return def.promise;
          },
 
-         getCardsByModuleAndDueDateBetween: function (module, minDate, maxDate) {
+         getCardsByModuleAndDueDateBetween: function (module_id, minDate, maxDate) {
             var def = $q.defer();
 
-            $http.get("/api/cards/search/findByModuleAndDueDateBetween?module_id=" + module.id + "&min=" + minDate.format("YYYY-MM-DD") + "&max=" + maxDate.format("YYYY-MM-DD"))
+            $http.get("/api/cards/search/findByModuleAndDueDateBetween?module_id=" + module_id + "&min=" + minDate.format("YYYY-MM-DD") + "&max=" + maxDate.format("YYYY-MM-DD"))
                .then(function successCallback(response) {
                      console.log("getCardsByModuleAndDueDateBetween SUCCESS! " + response);
 
-                     def.resolve(response.data);
+                     def.resolve(response.data._embedded.cards);
                   },
                   function errorCallback(response) {
                      console.log("getCardsByModuleAndDueDateBetween ERROR! " + response);
@@ -97,14 +97,14 @@
             return def.promise;
          },
 
-         getCardsByCourseAndDueDateBetween: function (course, minDate, maxDate) {
+         getCardsByCourseAndDueDateBetween: function (course_id, minDate, maxDate) {
             var def = $q.defer();
 
-            $http.get("/api/cards/search/findByCourseAndDueDateBetween?course_id=" + course.id + "&min=" + minDate.format("YYYY-MM-DD") + "&max=" + maxDate.format("YYYY-MM-DD"))
+            $http.get("/api/cards/search/findByCourseAndDueDateBetween?course_id=" + course_id + "&min=" + minDate.format("YYYY-MM-DD") + "&max=" + maxDate.format("YYYY-MM-DD"))
                .then(function successCallback(response) {
                      console.log("getCardsByCourseAndDueDateBetween SUCCESS! " + response);
 
-                     def.resolve(response.data);
+                     def.resolve(response.data._embedded.cards);
                   },
                   function errorCallback(response) {
                      console.log("getCardsByCourseAndDueDateBetween ERROR! " + response);
