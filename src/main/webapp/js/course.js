@@ -1,7 +1,7 @@
 (function () {
    var app = angular.module("elephantApp");
 
-   var courseDetailsController = function ($scope, $http, $routeParams, courseService) {
+   var courseController = function ($scope, $http, $routeParams, courseService) {
       $scope.course = {
          id: $routeParams.course_id
       };
@@ -36,5 +36,5 @@
          });
    };
 
-   app.controller("courseDetailsController", ['$scope', '$http', '$routeParams', 'courseService', courseDetailsController]);
+   app.controller("courseController", ['$scope', '$http', '$routeParams', 'courseService', courseController]);
 })();

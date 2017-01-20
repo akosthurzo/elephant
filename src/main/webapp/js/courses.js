@@ -1,7 +1,7 @@
 (function () {
    var app = angular.module("elephantApp");
 
-   var courseController = function ($scope, $http, $location, courseService) {
+   var coursesController = function ($scope, $http, $location, courseService) {
       $scope.course = {};
 
       $scope.updateCourseName = function (course) {
@@ -37,5 +37,5 @@
       $scope.refreshCourses();
    };
 
-   app.controller("courseController", ['$scope', '$http', '$location', 'courseService', courseController]);
+   app.controller("coursesController", ['$scope', '$http', '$location', 'courseService', coursesController]);
 })();

@@ -5,15 +5,15 @@
       $routeProvider
          .when("/", {
             templateUrl: "courses.html",
-            controller: "courseController"
+            controller: "coursesController"
          })
          .when("/courses", {
             templateUrl: "courses.html",
-            controller: "courseController"
+            controller: "coursesController"
          })
          .when("/course/:course_id", {
             templateUrl: "course.html",
-            controller: "courseDetailsController"
+            controller: "courseController"
          })
          .when("/upload/:id", {
             templateUrl: "upload.html",
@@ -21,7 +21,7 @@
          })
          .when("/module/:module_id", {
             templateUrl: "module.html",
-            controller: "cardController",
+            controller: "moduleController",
             css: "css/card.css"
          })
          .when("/learn/:course_id", {
