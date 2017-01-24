@@ -2,6 +2,7 @@ package com.elephantapp.repository;
 
 import com.elephantapp.model.Card;
 import com.elephantapp.model.Module;
+import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.data.repository.query.Param;
@@ -18,10 +19,12 @@ import java.util.List;
 public interface CardRepository extends CrudRepository<Card, Long> {
 
     @Query("select c from Card c " +
-            "where c.module.id = ?1 and c.dueDate between ?2 and ?3")
+            "where c.module.id = :module_id and c.dueDate between :min and :max " +
+            "order by c.dueDate, c.id")
     List<Card> findByModuleAndDueDateBetween(@Param("module_id") Long module_id, @DateTimeFormat(pattern = "yyyy-MM-dd") @Param("min") Date date1, @DateTimeFormat(pattern = "yyyy-MM-dd") @Param("max") Date date2);
 
     @Query("select c from Card c " +
-            "where c.module.course.id = ?1 and c.dueDate between ?2 and ?3")
-    List<Card> findByCourseAndDueDateBetween(@Param("course_id") Long module_id, @DateTimeFormat(pattern = "yyyy-MM-dd") @Param("min") Date date1, @DateTimeFormat(pattern = "yyyy-MM-dd") @Param("max") Date date2);
+            "where c.module.course.id = :course_id and c.dueDate between :min and :max " +
+            "order by c.dueDate, c.id")
+    List<Card> findByCourseAndDueDateBetween(@Param("course_id") Long module_id, @DateTimeFormat(pattern = "yyyy-MM-dd") @Param("min") Date date1, @DateTimeFormat(pattern = "yyyy-MM-dd") @Param("max") Date date2, Pageable pageable);
 }

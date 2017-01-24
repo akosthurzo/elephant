@@ -83,7 +83,7 @@
          getCardsByModuleAndDueDateBetween: function (module_id, minDate, maxDate) {
             var def = $q.defer();
 
-            $http.get("/api/cards/search/findByModuleAndDueDateBetween?module_id=" + module_id + "&min=" + minDate.format("YYYY-MM-DD") + "&max=" + maxDate.format("YYYY-MM-DD"))
+            $http.get("/api/cards/search/findByModuleAndDueDateBetween?module_id=" + module_id + "&min=" + minDate.format("YYYY-MM-DD") + "&max=" + maxDate.format("YYYY-MM-DD") + "&size=20")
                .then(function successCallback(response) {
                      console.log("getCardsByModuleAndDueDateBetween SUCCESS! " + response);
 
@@ -100,7 +100,7 @@
          getCardsByCourseAndDueDateBetween: function (course_id, minDate, maxDate) {
             var def = $q.defer();
 
-            $http.get("/api/cards/search/findByCourseAndDueDateBetween?course_id=" + course_id + "&min=" + minDate.format("YYYY-MM-DD") + "&max=" + maxDate.format("YYYY-MM-DD"))
+            $http.get("/api/cards/search/findByCourseAndDueDateBetween?course_id=" + course_id + "&min=" + minDate.format("YYYY-MM-DD") + "&max=" + maxDate.format("YYYY-MM-DD") + "&size=20")
                .then(function successCallback(response) {
                      console.log("getCardsByCourseAndDueDateBetween SUCCESS! " + response);
 
