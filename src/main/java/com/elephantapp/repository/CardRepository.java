@@ -25,6 +25,6 @@ public interface CardRepository extends CrudRepository<Card, Long> {
 
     @Query("select c from Card c " +
             "where c.module.course.id = :course_id and c.dueDate between :min and :max " +
-            "order by c.dueDate, c.id")
+            "order by c.module.moduleIndex, c.dueDate, c.cardIndex")
     List<Card> findByCourseAndDueDateBetween(@Param("course_id") Long module_id, @DateTimeFormat(pattern = "yyyy-MM-dd") @Param("min") Date date1, @DateTimeFormat(pattern = "yyyy-MM-dd") @Param("max") Date date2, Pageable pageable);
 }
