@@ -46,7 +46,13 @@ public class Module {
     }
 
     public void setCards(List<Card> cards) {
-        this.cards = cards;
+        if (this.cards == null) {
+            this.cards = cards;
+        } else {
+            //this.cards.retainAll(cards);
+            this.cards.clear();
+            this.cards.addAll(cards);
+        }
     }
 
     public Course getCourse() {

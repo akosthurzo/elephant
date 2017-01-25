@@ -43,6 +43,12 @@ public class Course {
     }
 
     public void setModules(List<Module> modules) {
-        this.modules = modules;
+        if (this.modules == null) {
+            this.modules = modules;
+        } else {
+            //this.modules.retainAll(modules);
+            this.modules.clear();
+            this.modules.addAll(modules);
+        }
     }
 }
