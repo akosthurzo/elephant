@@ -73,4 +73,26 @@ public class Module {
     public void setModuleIndex(Long moduleIndex) {
         this.moduleIndex = moduleIndex;
     }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+
+        Module module = (Module) o;
+
+        if (id != null ? !id.equals(module.id) : module.id != null) return false;
+        if (name != null ? !name.equals(module.name) : module.name != null) return false;
+        if (cards != null ? !cards.equals(module.cards) : module.cards != null) return false;
+        return course != null ? course.equals(module.course) : module.course == null;
+    }
+
+    @Override
+    public int hashCode() {
+        int result = id != null ? id.hashCode() : 0;
+        result = 31 * result + (name != null ? name.hashCode() : 0);
+        result = 31 * result + (cards != null ? cards.hashCode() : 0);
+        result = 31 * result + (course != null ? course.hashCode() : 0);
+        return result;
+    }
 }

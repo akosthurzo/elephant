@@ -118,4 +118,39 @@ public class Card {
     public void setCardIndex(Long cardIndex) {
         this.cardIndex = cardIndex;
     }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+
+        Card card = (Card) o;
+
+        if (id != null ? !id.equals(card.id) : card.id != null) return false;
+        if (side1 != null ? !side1.equals(card.side1) : card.side1 != null) return false;
+        if (side2 != null ? !side2.equals(card.side2) : card.side2 != null) return false;
+        if (attributes != null ? !attributes.equals(card.attributes) : card.attributes != null) return false;
+        if (interval != null ? !interval.equals(card.interval) : card.interval != null) return false;
+        if (eFactor != null ? !eFactor.equals(card.eFactor) : card.eFactor != null) return false;
+        if (repetitionCount != null ? !repetitionCount.equals(card.repetitionCount) : card.repetitionCount != null)
+            return false;
+        if (dueDate != null ? !dueDate.equals(card.dueDate) : card.dueDate != null) return false;
+        if (module != null ? !module.equals(card.module) : card.module != null) return false;
+        return cardIndex != null ? cardIndex.equals(card.cardIndex) : card.cardIndex == null;
+    }
+
+    @Override
+    public int hashCode() {
+        int result = id != null ? id.hashCode() : 0;
+        result = 31 * result + (side1 != null ? side1.hashCode() : 0);
+        result = 31 * result + (side2 != null ? side2.hashCode() : 0);
+        result = 31 * result + (attributes != null ? attributes.hashCode() : 0);
+        result = 31 * result + (interval != null ? interval.hashCode() : 0);
+        result = 31 * result + (eFactor != null ? eFactor.hashCode() : 0);
+        result = 31 * result + (repetitionCount != null ? repetitionCount.hashCode() : 0);
+        result = 31 * result + (dueDate != null ? dueDate.hashCode() : 0);
+        result = 31 * result + (module != null ? module.hashCode() : 0);
+        result = 31 * result + (cardIndex != null ? cardIndex.hashCode() : 0);
+        return result;
+    }
 }
