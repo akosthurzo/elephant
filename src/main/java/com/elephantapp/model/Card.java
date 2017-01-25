@@ -36,6 +36,8 @@ public class Card {
     private Date dueDate;
     @ManyToOne(cascade = CascadeType.ALL)
     private Module module;
+    @Column(name = "card_index")
+    private Long cardIndex;
 
     public Long getId() {
         return id;
@@ -107,5 +109,13 @@ public class Card {
 
     public void setModule(Module module) {
         this.module = module;
+    }
+
+    public Long getCardIndex() {
+        return cardIndex;
+    }
+
+    public void setCardIndex(Long cardIndex) {
+        this.cardIndex = cardIndex;
     }
 }

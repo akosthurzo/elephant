@@ -1,6 +1,7 @@
 package com.elephantapp.model;
 
 import javax.persistence.CascadeType;
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
@@ -24,6 +25,8 @@ public class Module {
     private List<Card> cards;
     @ManyToOne(cascade = CascadeType.ALL)
     private Course course;
+    @Column(name = "module_index")
+    private Long moduleIndex;
 
     public Long getId() {
         return id;
@@ -61,5 +64,13 @@ public class Module {
 
     public void setCourse(Course course) {
         this.course = course;
+    }
+
+    public Long getModuleIndex() {
+        return moduleIndex;
+    }
+
+    public void setModuleIndex(Long moduleIndex) {
+        this.moduleIndex = moduleIndex;
     }
 }

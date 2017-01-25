@@ -18,7 +18,7 @@ public class Course {
     @GeneratedValue
     private Long id;
     private String name;
-    @OneToMany(cascade = CascadeType.ALL, orphanRemoval = true)
+    @OneToMany(mappedBy = "course", cascade = CascadeType.ALL, orphanRemoval = true)
     @OrderColumn(name = "module_index")
     private List<Module> modules;
 
