@@ -31,9 +31,13 @@ public class Card {
     @Column(name = "attribute_value")
     private Map<String, String> attributes;
     private Long interval;
+    private Long interval2;
     private Double eFactor;
+    private Double eFactor2;
     private Long repetitionCount;
+    private Long repetitionCount2;
     private Date dueDate;
+    private Date dueDate2;
     @ManyToOne(cascade = CascadeType.ALL)
     private Module module;
     @Column(name = "card_index")
