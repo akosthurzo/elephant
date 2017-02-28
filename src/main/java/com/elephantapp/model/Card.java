@@ -30,14 +30,6 @@ public class Card {
     @MapKeyColumn(name = "attribute_key")
     @Column(name = "attribute_value")
     private Map<String, String> attributes;
-    private Long interval;
-    private Long interval2;
-    private Double eFactor;
-    private Double eFactor2;
-    private Long repetitionCount;
-    private Long repetitionCount2;
-    private Date dueDate;
-    private Date dueDate2;
     @ManyToOne(cascade = CascadeType.ALL)
     private Module module;
     @Column(name = "card_index")
@@ -75,38 +67,6 @@ public class Card {
         this.attributes = attributes;
     }
 
-    public Long getInterval() {
-        return interval;
-    }
-
-    public void setInterval(Long interval) {
-        this.interval = interval;
-    }
-
-    public Double geteFactor() {
-        return eFactor;
-    }
-
-    public void seteFactor(Double eFactor) {
-        this.eFactor = eFactor;
-    }
-
-    public Long getRepetitionCount() {
-        return repetitionCount;
-    }
-
-    public void setRepetitionCount(Long repetitionCount) {
-        this.repetitionCount = repetitionCount;
-    }
-
-    public Date getDueDate() {
-        return dueDate;
-    }
-
-    public void setDueDate(Date dueDate) {
-        this.dueDate = dueDate;
-    }
-
     public Module getModule() {
         return module;
     }
@@ -134,11 +94,6 @@ public class Card {
         if (side1 != null ? !side1.equals(card.side1) : card.side1 != null) return false;
         if (side2 != null ? !side2.equals(card.side2) : card.side2 != null) return false;
         if (attributes != null ? !attributes.equals(card.attributes) : card.attributes != null) return false;
-        if (interval != null ? !interval.equals(card.interval) : card.interval != null) return false;
-        if (eFactor != null ? !eFactor.equals(card.eFactor) : card.eFactor != null) return false;
-        if (repetitionCount != null ? !repetitionCount.equals(card.repetitionCount) : card.repetitionCount != null)
-            return false;
-        if (dueDate != null ? !dueDate.equals(card.dueDate) : card.dueDate != null) return false;
         if (module != null ? !module.equals(card.module) : card.module != null) return false;
         return cardIndex != null ? cardIndex.equals(card.cardIndex) : card.cardIndex == null;
     }
@@ -149,10 +104,6 @@ public class Card {
         result = 31 * result + (side1 != null ? side1.hashCode() : 0);
         result = 31 * result + (side2 != null ? side2.hashCode() : 0);
         result = 31 * result + (attributes != null ? attributes.hashCode() : 0);
-        result = 31 * result + (interval != null ? interval.hashCode() : 0);
-        result = 31 * result + (eFactor != null ? eFactor.hashCode() : 0);
-        result = 31 * result + (repetitionCount != null ? repetitionCount.hashCode() : 0);
-        result = 31 * result + (dueDate != null ? dueDate.hashCode() : 0);
         result = 31 * result + (module != null ? module.hashCode() : 0);
         result = 31 * result + (cardIndex != null ? cardIndex.hashCode() : 0);
         return result;
